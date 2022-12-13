@@ -4,16 +4,14 @@
 package FFSSM;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Licence {
 
-    public Personne possesseur;
-
-    public String numero;
-
-    public LocalDate delivrance;
-
-    public Club club;
+    private Personne possesseur;
+    private String numero;
+    private LocalDate delivrance;
+    private Club club;
 
     public Licence(Personne possesseur, String numero, LocalDate delivrance, Club club) {
         this.possesseur = possesseur;
@@ -45,8 +43,12 @@ public class Licence {
      * @return vrai si valide à la date d
      **/
     public boolean estValide(LocalDate d) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+         boolean valide=true;
+         
+         long difference = ChronoUnit.YEARS.between(d, delivrance);
+         if(difference>1) {
+        	 valide = false;
+         } return valide;
     }
 
 }
